@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import { Landing } from './components/Landing.coffee'
 import { About } from "./components/About.coffee"
 import { Login } from "./components/Login.coffee"
+import { Logout } from "./components/Logout.coffee"
 import { Register } from "./components/Register.coffee"
 
 export class Routes extends Component
@@ -14,5 +15,6 @@ export class Routes extends Component
         <Route exact path='/' component={Landing} />
         <Route exact path='/about' component={About} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/logout' component={Logout} />
         <Route exact path='/register' component={Register} />
     </Switch>

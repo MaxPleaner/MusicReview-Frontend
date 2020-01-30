@@ -98,3 +98,10 @@ button:active {
   margin-top: 10px;
   margin-bottom: 0;
 }
+
+
+.ErrMsg {
+  background-color: darkred;
+  width: 300px;
+  margin: 20px auto;
+}

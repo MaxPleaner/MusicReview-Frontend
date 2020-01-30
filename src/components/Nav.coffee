@@ -1,14 +1,20 @@
 import React, { Component, SetState } from 'react'
 import { Nav as NavMenu, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import PubSub from 'pubsub-js';
+import history from '../history.coffee';
 
 export class Nav extends Component
 
-  constructor: ->
+  componentWillUnmount: =>
+    @subscriptions.forEach(PubSub.unsubscribe)
+
+  constructor: (props, context) ->
     super()
 
     @state =
-      current_user: null
+      user_id: null
+      access_token: null
 
   build_nav_item = (link_text, href) =>
     <NavItem key={href}>
@@ -18,11 +24,28 @@ export class Nav extends Component
     </NavItem>
 
   componentDidMount: =>
+    @subscriptions = [
+
+      PubSub.subscribe "logged in", (msg, {access_token, user_id}) =>
+        @setState
+          user_id: user_id
+          access_token: access_token
+
+      PubSub.subscribe "logged out", =>
+        @setState
+          user_id: null
+          access_token: null
+    ]
+
     @setState
-      current_user: localStorage.getItem("current_user")
+      user_id: localStorage.getItem("user_id")
+      access_token: localStorage.getItem("access_token")
+
+  user_logged_in: =>
+    @state.user_id && @state.access_token
 
   render: =>
-    auth_buttons = if @state.current_user
+    auth_buttons = if @user_logged_in()
       [build_nav_item("Logout", "/logout")]
     else
       [
