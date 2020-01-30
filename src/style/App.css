@@ -78,3 +78,23 @@ button:active {
   margin-top: 50px;
 }
 
+.CredentialsForm {
+  border: 1px solid lightgrey;
+  background-color: grey;
+  display: inline-block;
+  padding: 10px;
+}
+
+.CredentialsForm input {
+  display: block;
+  margin: 10px auto;
+  text-align: center;
+  width: 300px;
+}
+
+.CredentialsForm .SubmitInput {
+  width: 100px;
+  border-radius: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
