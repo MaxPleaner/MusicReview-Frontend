@@ -10,8 +10,11 @@
     "clean": "rimraf ./dist/*"
   },
   "dependencies": {
+    "bootstrap": "^4.4.1",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^5.1.2",
+    "reactstrap": "^8.4.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

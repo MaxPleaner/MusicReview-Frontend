@@ -25,6 +25,8 @@ module.exports =
     filename: 'index.bundle.js'
     path: path.resolve(__dirname, 'dist')
   devServer:
+    publicPath: '/'
+    historyApiFallback: true
     contentBase: path.join(__dirname, 'dist'),
     compress: true
     hot: true
