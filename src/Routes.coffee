@@ -7,14 +7,55 @@ import { Logout } from "./components/Logout.coffee"
 import { Register } from "./components/Register.coffee"
 
 export class Routes extends Component
-  constructor: ->
+  constructor: (props) ->
     super()
+    @props = props
 
-  render: ->
+  render: =>
     <Switch>
-        <Route exact path='/' component={Landing} />
-        <Route exact path='/about' component={About} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/logout' component={Logout} />
-        <Route exact path='/register' component={Register} />
+        <Route
+          exact path='/'
+          component={
+            () => <Landing
+              user_id={@props.user_id}
+              access_token={@props.access_token}
+            />
+          }
+        />
+        <Route
+          exact path='/about'
+          component={
+            () => <About
+              user_id={@props.user_id}
+              access_token={@props.access_token}
+            />
+          }
+        />
+        <Route
+          exact path='/login'
+          component={
+            () => <Login
+              user_id={@props.user_id}
+              access_token={@props.access_token}
+            />
+          }
+        />
+        <Route
+          exact path='/logout'
+          component={
+            () => <Logout
+              user_id={@props.user_id}
+              access_token={@props.access_token}
+            />
+          }
+        />
+        <Route
+          exact path='/register'
+          component={
+            () => <Register
+              user_id={@props.user_id}
+              access_token={@props.access_token}
+            />
+          }
+        />
     </Switch>

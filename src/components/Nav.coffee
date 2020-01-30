@@ -6,15 +6,9 @@ import history from '../history.coffee';
 
 export class Nav extends Component
 
-  componentWillUnmount: =>
-    @subscriptions.forEach(PubSub.unsubscribe)
-
   constructor: (props, context) ->
     super()
-
-    @state =
-      user_id: null
-      access_token: null
+    @props = props
 
   build_nav_item = (link_text, href) =>
     <NavItem key={href}>
@@ -23,26 +17,8 @@ export class Nav extends Component
       </Link>
     </NavItem>
 
-  componentDidMount: =>
-    @subscriptions = [
-
-      PubSub.subscribe "logged in", (msg, {access_token, user_id}) =>
-        @setState
-          user_id: user_id
-          access_token: access_token
-
-      PubSub.subscribe "logged out", =>
-        @setState
-          user_id: null
-          access_token: null
-    ]
-
-    @setState
-      user_id: localStorage.getItem("user_id")
-      access_token: localStorage.getItem("access_token")
-
   user_logged_in: =>
-    @state.user_id && @state.access_token
+    @props.user_id && @props.access_token
 
   render: =>
     auth_buttons = if @user_logged_in()
