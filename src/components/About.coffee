@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 
-export class About extends Component
-  constructor: ->
-    super()
+About = ->
+  <h4>
+    About
+  </h4>
 
-  render: ->
-    <div>
-      (About)
-    </div>
+export { About }

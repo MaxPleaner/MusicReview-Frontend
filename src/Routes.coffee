@@ -13,49 +13,9 @@ export class Routes extends Component
 
   render: =>
     <Switch>
-        <Route
-          exact path='/'
-          component={
-            () => <Landing
-              user_id={@props.user_id}
-              access_token={@props.access_token}
-            />
-          }
-        />
-        <Route
-          exact path='/about'
-          component={
-            () => <About
-              user_id={@props.user_id}
-              access_token={@props.access_token}
-            />
-          }
-        />
-        <Route
-          exact path='/login'
-          component={
-            () => <Login
-              user_id={@props.user_id}
-              access_token={@props.access_token}
-            />
-          }
-        />
-        <Route
-          exact path='/logout'
-          component={
-            () => <Logout
-              user_id={@props.user_id}
-              access_token={@props.access_token}
-            />
-          }
-        />
-        <Route
-          exact path='/register'
-          component={
-            () => <Register
-              user_id={@props.user_id}
-              access_token={@props.access_token}
-            />
-          }
-        />
+        <Route exact path='/' component={() => <Landing user={@props.user} />} />
+        <Route exact path='/about' component={() => <About user={@props.user} />} />
+        <Route exact path='/login' component={() => <Login user={@props.user} />} />
+        <Route exact path='/logout' component={() => <Logout user={@props.user} />} />
+        <Route exact path='/register' component={() => <Register user={@props.user} />} />
     </Switch>

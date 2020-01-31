@@ -21,14 +21,14 @@ export class Login extends Component
     })
     .then (response) =>
       data = JSON.parse(response)
-      localStorage.setItem "access_token", data.access_token
-      localStorage.setItem "user_id", data.user_id
+      localStorage.setItem "user", JSON.stringify(data)
       PubSub.publish "logged in", data
     .catch (err_msg) =>
       @setState err_msg: err_msg.responseText
 
   render: =>
     <div>
+      <h4>Login</h4>
       <form
         action='#'
         className='CredentialsForm'

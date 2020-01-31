@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+$ = require 'jquery'
 
 export class Landing extends Component
   constructor: (props) ->
@@ -6,12 +7,14 @@ export class Landing extends Component
     @props = props
 
   user_logged_in: =>
-    @props.user_id && @props.access_token
+    @props.user
 
   render: ->
-    <div>{
-      if @user_logged_in()
-        "Landing Page - logged in"
-      else
-        "Landing Page - logged out"
-    }</div>
+    <div>
+      <h4>{
+        if @props.user
+          "Hello #{@props.user.name}"
+        else
+          "Landing page (logged out)"
+      }</h4>
+    </div>

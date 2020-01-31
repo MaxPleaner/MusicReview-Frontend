@@ -17,11 +17,8 @@ export class Nav extends Component
       </Link>
     </NavItem>
 
-  user_logged_in: =>
-    @props.user_id && @props.access_token
-
   render: =>
-    auth_buttons = if @user_logged_in()
+    auth_buttons = if @props.user
       [build_nav_item("Logout", "/logout")]
     else
       [

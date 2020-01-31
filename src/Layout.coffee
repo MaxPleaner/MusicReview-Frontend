@@ -15,23 +15,19 @@ export class Layout extends Component
   componentDidMount: =>
     @subscriptions = [
 
-      PubSub.subscribe "logged in", (msg, {access_token, user_id}) =>
-        localStorage.setItem "user_id", user_id
-        localStorage.setItem "access_token", access_token
-        @setState { user_id, access_token }
-        # debugger
+      PubSub.subscribe "logged in", (msg, user) =>
+        localStorage.setItem "user", JSON.stringify(user)
+        @setState { user }
         history.push('/')
 
       PubSub.subscribe "logged out", =>
-        localStorage.removeItem "user_id"
-        localStorage.removeItem "access_token"
-        @setState { user_id: null, access_token: null }
+        localStorage.removeItem "user"
+        @setState { user: null }
         history.push('/')
     ]
 
     @setState
-      user_id: localStorage.getItem("user_id")
-      access_token: localStorage.getItem("access_token")
+      user: JSON.parse(localStorage.getItem("user"))
 
   componentWillUnmount: =>
     @subscriptions.forEach(PubSub.unsubscribe);
@@ -40,10 +36,10 @@ export class Layout extends Component
     <div className='PageWrapper'>
       <Router history={history}>
         <div className='Nav'>
-          <Nav user_id={@state.user_id} access_token={@state.access_token} />
+          <Nav user={@state.user} />
         </div>
         <div className='Page'>
-          <Routes user_id={@state.user_id} access_token={@state.access_token} />
+          <Routes user={@state.user} />
         </div>
       </Router>
     </div>
